@@ -1,27 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Custom Font Effect</title>
-<style>
- /* @font-face {
-    font-family: 'customFont1'; 
-    src: url('font/font (1).ttf') format('truetype');
-
-}  */
-.custom-font{
-    font-family: "Jersey 15 Charted", sans-serif;
-}
-.custom-font p::after {
-    content: " 🅸🅽🆂🆃🅰🅶🆁🅰🅼"; 
-}
-
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Text to Image</title>
+  <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&family=Jaro:opsz@6..72&family=Reenie+Beanie&display=swap" rel="stylesheet">
+  <style>
+    #text-input {
+      padding: 10px;
+      font-size: 16px;
+    }
+    #generated-image {
+      border: 1px solid #ddd; /* Optional for visibility */
+      margin-top: 10px;
+    }
+  </style>
 </head>
 <body>
-    <div class="custom-font">
-        <p>This is some text with an Instagram-compatible Unicode font effect!</p>
-    </div>
+  <h1>Text to Image</h1>
+  <select id="font-select">
+    <option value="Jaro">Jaro</option>
+    <option value="Courier Prime">Courier Prime</option>
+    <option value="Reenie Beanie">Reenie Beanie</option>
+  </select>
+  <input type="text" id="text-input" placeholder="Enter your text">
+  <button id="generate-button">Generate Image</button>
+  <br>
+  <canvas id="generated-image"></canvas>
+  <script>
+    const textInput = document.getElementById('text-input');
+    const generateButton = document.getElementById('generate-button');
+    const canvas = document.getElementById('generated-image');
+    const ctx = canvas.getContext('2d');
+    const fontSelect = document.getElementById('font-select');
+
+    generateButton.addEventListener('click', () => {
+      const text = textInput.value;
+      const selectedFont = fontSelect.value;
+
+      // Measure the text size
+      const textMetrics = ctx.measureText(text);
+      const textWidth = textMetrics.width;
+      const textHeight = ctx.measureText("A").width; // Assuming the font height is similar to letter "M"
+
+      // Set canvas dimensions with padding
+      const padding = 30; // Adjust padding as needed
+      canvas.width = textWidth + padding * 2;
+      canvas.height = textHeight + padding * 2;
+
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.font = '20px ' + selectedFont;
+      ctx.fillStyle = '#000';
+
+      // Draw the text with padding
+      ctx.fillText(text, padding, textHeight + padding); // Adjust position as needed
+    });
+  </script>
 </body>
 </html>

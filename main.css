@@ -1,0 +1,80 @@
+@font-face {
+  font-family: font1;
+  src: url(font/font1.ttf);
+}
+
+@font-face {
+  font-family: font2;
+  src: url(font/font2.ttf);
+}
+@font-face {
+  font-family: font3;
+  src: url(font/font3.ttf);
+}
+
+@font-face {
+  font-family: font4;
+  src: url(font/font4.ttf);
+}
+@font-face {
+  font-family: font5;
+  src: url(font/font5.ttf);
+}
+
+@font-face {
+  font-family: font6;
+  src: url(font/font6.ttf);
+}
+@font-face {
+  font-family: font7;
+  src: url(font/font7.ttf);
+}
+@font-face {
+  font-family: font8;
+  src: url(font/font8.ttf);
+}
+@font-face {
+  font-family: font9;
+  src: url(font/font9.ttf);
+}
+@font-face {
+  font-family: font10;
+  src: url(font/font10.ttf);
+}
+@font-face {
+  font-family: font11;
+  src: url(font/font11.ttf);
+}
+
+@font-face {
+  font-family: font12;
+  src: url(font/font12.ttf);
+}
+@font-face {
+  font-family: font13;
+  src: url(font/font13.ttf);
+}
+@font-face {
+  font-family: font14;
+  src: url(font/font14.ttf);
+}
+@font-face {
+  font-family: font15;
+  src: url(font/font15.ttf);
+}
+@font-face {
+  font-family: font16;
+  src: url(font/font16.ttf);
+}
+#text-input {
+  padding: 10px;
+  font-size: 16px;
+}
+#generated-image {
+  border: 1px solid #ddd; /* Optional for visibility */
+  margin-top: 10px;
+}
+
+#font-select{
+  margin-right: 10px;
+}

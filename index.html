@@ -3,45 +3,57 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Text to Image</title>
 
-  <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&family=Jaro:opsz@6..72&family=Reenie+Beanie&display=swap" rel="stylesheet">
-  <style>
-      @font-face {
-      font-family: font1;
-      src: url(font/font1.ttf);
-    }
-
-    @font-face {
-      font-family: font2;
-      src: url(font/font2.ttf);
-    }
-    #text-input {
-      padding: 10px;
-      font-size: 16px;
-    }
-    #generated-image {
-      border: 1px solid #ddd; /* Optional for visibility */
-      margin-top: 10px;
-    }
-  </style>
+  <title>Margo Text Generator</title>
+    <link rel="icon" type="image/gif" href="./fav.ico">
+<link rel="stylesheet" href="main.css">
 </head>
 <body>
-  <h1>Text to Image</h1>
   <select id="font-select">
-    <option value="Jaro">Jaro</option>
-    <option value="Courier Prime">Courier Prime</option>
-    <option value="Reenie Beanie">Reenie Beanie</option>
-    <option value="font1">Font 1</option>
-    <option value="font2">Font 22</option>
+    <option value="font1">❤️Font 1</option>
+    <option value="font2">Font 2</option>
+    <option value="font3">Font 3</option>
+    <option value="font4">❤️Font 4</option>
+    <option value="font5">❤️Font 5</option>
+    <option value="font6">Font 6</option>
+    <option value="font7">Font 7</option>
+    <option value="font8">❤️Font 8</option>
+    <option value="font9">Font 9</option>
+    <option value="font10">❤️Font 10</option>
+    <option value="font11">Font 11</option>
+    <option value="font12">❤️Font 12</option>
+    <option value="font13">Font 13</option>
+    <option value="font14">❤️Font 14</option>
+    <option value="font15">❤️Font 15</option>
+    <option value="font16">Font 16</option>
   </select>
   <input type="text" id="text-input" placeholder="Enter your text">
+  <div class="pick" style="display: flex;gap:0 20px;align-items:center;margin:10px 0">
+  <input type="color" id="colorPicker">
+  <div id="previewText">Preview Text</div></div>
+
   <button id="generate-button">Generate Image</button>
   <button id="save-button">Save Image</button>
   <button id="copy-image-button">Copy Image</button>
 
   <br>
-  <canvas id="generated-image"></canvas>
+  <div class="display" style="width: 300px;
+  overflow: scroll;
+  display: block;">
+  <canvas id="generated-image"></canvas></div>
+  <script>
+  // Function to update font color
+  function updateFontColor(color) {
+    const previewText = document.getElementById("previewText");
+    previewText.style.color = color;
+  }
+
+  // Event listener for color picker change
+  document.getElementById("colorPicker").addEventListener("input", function() {
+    updateFontColor(this.value);
+  });
+
+</script>
   <script>
     const textInput = document.getElementById('text-input');
     const generateButton = document.getElementById('generate-button');
@@ -53,26 +65,32 @@
 
 
     generateButton.addEventListener('click', () => {
-      const text = textInput.value;
-      const selectedFont = fontSelect.value;
+  const text = textInput.value;
+  const selectedFont = fontSelect.value;
+  const fontColor = document.getElementById("colorPicker").value;
 
-      // Measure the text size
-      const textMetrics = ctx.measureText(text);
-      const textWidth = textMetrics.width;
-      const textHeight = ctx.measureText("A").width; // Assuming the font height is similar to letter "M"
+  // Measure the text size
+  const textMetrics = ctx.measureText(text);
+  const textWidth = textMetrics.width;
+  const textHeight = ctx.measureText("A").width; // Assuming the font height is similar to letter "M"
 
-      // Set canvas dimensions with padding
-      const padding = 30; // Adjust padding as needed
-      canvas.width = textWidth + padding * 2;
-      canvas.height = textHeight + padding * 2;
+  // Set canvas dimensions with padding
+  const padding = 30; // Adjust padding as needed
+  canvas.width = textWidth + padding * 2;
+  canvas.height = textHeight + padding * 2;
 
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      ctx.font = '60px ' + selectedFont;
-      ctx.fillStyle = '#000';
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  ctx.font = '70px ' + selectedFont;
+  ctx.fillStyle = fontColor; // Set font color
 
-      // Draw the text with padding
-      ctx.fillText(text, padding, textHeight + padding); // Adjust position as needed
-    });
+  // Draw the text with padding
+  ctx.fillText(text, padding, textHeight + padding); // Adjust position as needed
+
+  // Update preview text color
+  const previewText = document.getElementById("previewText");
+  previewText.style.color = fontColor;
+});
+
 
     saveButton.addEventListener('click', () => {
       const dataURL = canvas.toDataURL('image/png');

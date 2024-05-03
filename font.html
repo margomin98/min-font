@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dynamic TTF Font in Select Options</title>
+<style>
+    @font-face {
+        font-family: 'CustomFont1';
+        src: url('font/font (1).ttf');
+    }
+    @font-face {
+        font-family: 'CustomFont2';
+        src: url('font/font (2).ttf');
+    }
+</style>
+</head>
+<body>
+
+<select id="fontSelector">
+  <option value="1">Font 1</option>
+  <option value="2">Font 2</option>
+</select>
+
+<div class="text">
+  <p>This is some text with custom font.</p>
+</div>
+
+<script>
+    function applyFont() {
+        var select = document.getElementById("fontSelector");
+        var fontValue = select.options[select.selectedIndex].value;
+        var textElement = document.querySelector(".text p");
+        switch (fontValue) {
+            case "1":
+                textElement.style.fontFamily = "CustomFont1";
+                break;
+            case "2":
+                textElement.style.fontFamily = "CustomFont2";
+                break;
+            default:
+                textElement.style.fontFamily = "Arial, sans-serif";
+        }
+    }
+
+    document.getElementById("fontSelector").addEventListener("change", applyFont);
+
+     applyFont();
+</script>
+
+</body>
+</html>

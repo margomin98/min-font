@@ -25,14 +25,20 @@
   </select>
   <input type="text" id="text-input" placeholder="Enter your text">
   <button id="generate-button">Generate Image</button>
+  <button id="save-button">Save Image</button>
+  <button id="copy-image-button">Copy Image</button>
+
   <br>
   <canvas id="generated-image"></canvas>
   <script>
     const textInput = document.getElementById('text-input');
     const generateButton = document.getElementById('generate-button');
+    const saveButton = document.getElementById('save-button');
     const canvas = document.getElementById('generated-image');
     const ctx = canvas.getContext('2d');
     const fontSelect = document.getElementById('font-select');
+    const copyImageButton = document.getElementById('copy-image-button');
+
 
     generateButton.addEventListener('click', () => {
       const text = textInput.value;
@@ -54,6 +60,20 @@
 
       // Draw the text with padding
       ctx.fillText(text, padding, textHeight + padding); // Adjust position as needed
+    });
+
+    saveButton.addEventListener('click', () => {
+      const dataURL = canvas.toDataURL('image/png');
+      const a = document.createElement('a');
+      a.href = dataURL;
+      a.download = 'generated_image.png';
+      a.click();
+    });
+    copyImageButton.addEventListener('click', () => {
+      canvas.toBlob((blob) => {
+        const item = new ClipboardItem({ 'image/png': blob });
+        navigator.clipboard.write([item]);
+      });
     });
   </script>
 </body>

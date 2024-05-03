@@ -28,13 +28,14 @@
     <option value="font16">Font 16</option>
   </select>
   <input type="text" id="text-input" placeholder="Enter your text">
+  <button id="reset-button">Reset</button>
   <div class="pick" style="display: flex;gap:0 20px;align-items:center;margin:10px 0">
   <input type="color" id="colorPicker">
-  <div id="previewText">Preview Text</div></div>
+  <div id="previewText">Test 測試文字</div></div>
 
-  <button id="generate-button">Generate Image</button>
-  <button id="save-button">Save Image</button>
-  <button id="copy-image-button">Copy Image</button>
+  <button id="generate-button">Generate</button>
+  <button id="save-button">Save</button>
+  <!-- <button id="copy-image-button">Copy Image</button> -->
 
   <br>
   <div class="display" style="width: 300px;
@@ -55,13 +56,18 @@
 
 </script>
   <script>
+     const resetButton = document.getElementById('reset-button');
+
+resetButton.addEventListener('click', () => {
+  textInput.value = ''; // Clear the input field
+});
     const textInput = document.getElementById('text-input');
     const generateButton = document.getElementById('generate-button');
     const saveButton = document.getElementById('save-button');
     const canvas = document.getElementById('generated-image');
     const ctx = canvas.getContext('2d');
     const fontSelect = document.getElementById('font-select');
-    const copyImageButton = document.getElementById('copy-image-button');
+    // const copyImageButton = document.getElementById('copy-image-button');
 
 
     generateButton.addEventListener('click', () => {
@@ -99,12 +105,12 @@
       a.download = 'generated_image.png';
       a.click();
     });
-    copyImageButton.addEventListener('click', () => {
-      canvas.toBlob((blob) => {
-        const item = new ClipboardItem({ 'image/png': blob });
-        navigator.clipboard.write([item]);
-      });
-    });
+    // copyImageButton.addEventListener('click', () => {
+    //   canvas.toBlob((blob) => {
+    //     const item = new ClipboardItem({ 'image/png': blob });
+    //     navigator.clipboard.write([item]);
+    //   });
+    // });
   </script>
 </body>
 </html>
